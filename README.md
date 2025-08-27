@@ -15,7 +15,7 @@ Os principais indicadores considerados para a análise e seleção dos FIIs incl
 
  - Preço Atual: Valor de mercado da cota no momento.
  - P/VP (Preço/Valor Patrimonial): Relação entre o preço da cota e o valor patrimonial líquido.
- - Dividend Yield: Retorno anual em dividendos com base no preço da cota.
+ - Dividend Yield: Retorno anual em dividendos com base no preço da cota.j
  - Dividendo (%): Porcentagem do retorno em dividendos.
  - Patrimônio: Valor total do patrimônio líquido do fundo.
  - P/VPA: Relação entre o preço e o valor patrimonial ajustado.
