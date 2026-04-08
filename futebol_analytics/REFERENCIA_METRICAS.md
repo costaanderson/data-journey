@@ -1,198 +1,135 @@
-# 📋 Referência Rápida - Métrica Explicadas
+# Referência Rápida - Métricas Explicadas
 
-## 🏆 Top 5 Gerados
+## Top 5 Atuais (Abril 2026)
 
-### ZAGUEIROS (DF)
-1. **Joško Gvardiol** - Manchester City - €75M
-2. **Moisés Caicedo** - Chelsea - €100M
-3. **Jan Paul van Hecke** - Brighton - €35M
-4. **Federico Valverde** - Real Madrid - €130M
-5. **Óscar Mingueza** - Celta Vigo - €18M
+### ZAGUEIROS (Score_DF)
+| Rank | Jogador | Clube | Score | Valor |
+|------|---------|-------|-------|-------|
+| 1 | Moisés Caicedo | Chelsea | 436.35 | €110M |
+| 2 | Joško Gvardiol | Manchester City | 400.30 | €70M |
+| 3 | Federico Valverde | Real Madrid | 368.25 | €120M |
+| 4 | Antonee Robinson | Fulham | 358.20 | €25M |
+| 5 | Aaron Wan-Bissaka | West Ham | 356.75 | €22M |
 
-### VOLANTES (MF)
-1. **Pedri** - Barcelona - €140M
-2. **Mattéo Guendouzi** - Lazio - €32M
-3. **Manuel Locatelli** - Juventus - €30M
-4. **Angelo Stiller** - Stuttgart - €45M
-5. **Bruno Guimarães** - Newcastle - €80M
+### VOLANTES (Score_MF)
+| Rank | Jogador | Clube | Score | Valor |
+|------|---------|-------|-------|-------|
+| 1 | Pedri | Barcelona | 676.72 | €150M |
+| 2 | Mattéo Guendouzi | Lazio | 603.04 | €28M |
+| 3 | Manuel Locatelli | Juventus | 593.04 | €25M |
+| 4 | Angelo Stiller | Stuttgart | 561.82 | €45M |
+| 5 | Bruno Guimarães | Newcastle | 557.82 | €75M |
 
-### ATACANTES (FW)
-1. **Álex Baena** - Villarreal - €55M
-2. **Pedri** - Barcelona - €140M
-3. **Mikkel Damsgaard** - Brentford - €30M
-4. **Cole Palmer** - Chelsea - €120M
-5. **Bruno Guimarães** - Newcastle - €80M
+### ATACANTES (Score_FW)
+| Rank | Jogador | Clube | Score | Valor |
+|------|---------|-------|-------|-------|
+| 1 | Álex Baena | Villarreal | 276.35 | €45M |
+| 2 | Cole Palmer | Chelsea | 264.45 | €110M |
+| 3 | Pedri | Barcelona | 259.00 | €150M |
+| 4 | Romano Schmid | Werder Bremen | 254.25 | €15M |
+| 5 | Mikkel Damsgaard | Brentford | 250.40 | €30M |
 
 ---
 
-## 📊 Colunas do Dataset
+## Colunas do Dataset
 
-### Informação Pessoal
+### Identificação
 | Coluna | Tipo | Descrição |
 |--------|------|-----------|
 | Player | str | Nome do jogador |
-| Nation | str | Nacionalidade com bandeira |
-| Pos | str | Posição(ões) na seleção |
-| Squad | str | Clube/Time |
+| Nation | str | Nacionalidade |
+| Pos | str | Posição(ões) |
+| Squad | str | Clube |
+| Comp | str | Competição (ex: Premier League) |
 | Age | float | Idade em anos |
 
-### Performance de Jogos
+### Volume de Jogo
 | Coluna | Tipo | Descrição |
 |--------|------|-----------|
-| Comp | str | Competição (ex: Premier League) |
 | Min | int | Total de minutos jogados |
-| 90s | float | Equivalente em jogos de 90 min |
-| Starts | int | Número de vezes como titular |
+| 90s | float | Equivalente em partidas completas |
+| Starts | int | Partidas como titular |
 
 ### Passes
 | Coluna | Tipo | Descrição |
 |--------|------|-----------|
 | Cmp | int | Passes completados |
 | Att | int | Passes tentados |
-| Cmp% | float | Percentual de passes completados |
-| PrgP | int | Passes que progridem 10+ jardas |
+| Cmp% | float | % de passes completados |
+| PrgP | int | Passes progressivos (avançam >= 10 jardas) |
 | 1/3 | int | Passes para o último terço do campo |
 
 ### Defesa
 | Coluna | Tipo | Descrição |
 |--------|------|-----------|
-| Tkl | int | Total de interceptações/tackles |
-| TklW | int | Tackles ganhos |
-| Att 3rd | int | Ataques feitos no terço defensivo |
+| Tkl | int | Total de tackles |
+| TklW | int | Tackles vencidos |
 | Int | int | Interceptações (passes capturados) |
+| Att 3rd | int | Ações defensivas no terço ofensivo |
 
-### Ataque/Criatividade
+### Criatividade / Ataque
 | Coluna | Tipo | Descrição |
 |--------|------|-----------|
-| PPA | int | Passes para ações de perigo |
-| KP | int | Key passes (passes decisivos) |
-| PrgC | int | Passes progressivos completados |
-| Gls | int | Gols marcados |
+| PPA | int | Passes para ações de perigo na área |
+| KP | int | Passes chave (diretos para finalização) |
+| PrgC | int | Conduções progressivas |
+| Gls | int | Gols |
 | Ast | int | Assistências |
-
-### Expected Stats
-| Coluna | Tipo | Descrição |
-|--------|------|-----------|
 | xG | float | Expected Goals (gols esperados) |
 | xAG | float | Expected Assisted Goals |
 
 ---
 
-## 🎯 Interpretação de Métricas
+## Interpretação de Métricas
 
 ### PrgP (Passes Progressivos)
-- **Alto (>250)**: Jogador muito criativo, bom em construção
-- **Médio (150-250)**: Jogador dinâmico
-- **Baixo (<150)**: Focado em outros aspectos
+- **> 250**: Jogador muito criativo e dominante na construção
+- **150-250**: Jogador dinâmico
+- **< 150**: Perfil mais defensivo
 
-### Cmp% (Percentual de Passes)
-- **>90%**: Excelente técnica
+### Cmp% (Precisão de Passes)
+- **> 90%**: Excelente técnica
 - **85-90%**: Muito bom
-- **75-85%**: Adequado
-- **<75%**: Precisa melhorar
+- **75-85%**: Adequado para o filtro aplicado
 
-### Tkl (Tackles/Interceptações)
-- **>80**: Zagueiro/Volante de elite
+### Tkl (Tackles)
+- **> 80**: Zagueiro/Volante de elite defensivo
 - **50-80**: Bom defensor
 - **20-50**: Defesa básica
-- **<20**: Mais ofensivo
 
 ### xG (Expected Goals)
-- **>2.0**: Atacante de classe
-- **1.5-2.0**: Bom finalizador
-- **1.0-1.5**: Adequado
-- **<1.0**: Poucas oportunidades
+- **> 2.0**: Atacante de alta classe
+- **1.5-2.0**: Bom finalizador (mínimo para o filtro)
 
 ---
 
-## 📈 Comparações Úteis
+## Comparações Úteis
 
-### Qual Zagueiro é Mais Defensivo?
-**Moisés Caicedo**: 114 tackles (melhor defensor)
-**Joško Gvardiol**: 58 tackles (mais técnico)
+### Zagueiros: Defesa vs Técnica
+- **Moisés Caicedo**: Maior volume defensivo (score 436.35)
+- **Joško Gvardiol**: Mais técnico em passes
+- **Antonee Robinson / Wan-Bissaka**: Melhor custo-benefício (€22-25M)
 
-### Qual Volante é Mais Criativo?
-**Pedri**: 360 passes progressivos + score 385.36 (melhor)
-**Bruno Guimarães**: 271 passes progressivos
+### Volantes: Score vs Custo
+- **Pedri**: Melhor score (676.72), mais caro (€150M)
+- **Guendouzi / Locatelli**: Boa performance por €25-28M
 
-### Qual Atacante Tem Melhor Eficiência?
-**Alex Baena**: 301.13 score
-**Pedri**: 291.56 score (mas €140M, mais caro)
-
----
-
-## 🔍 Como Buscar Manualmente um Jogador
-
-```python
-# Dentro de uma célula de código
-async with TMKT() as tmkt:
-    # Buscar jogador
-    players = await tmkt.player_search("Neymar")
-    print(players)  # Mostra opções
-    
-    # Pegar detalhes
-    player_id = players[0]['id']
-    player = await tmkt.get_player(player_id)
-    
-    # Acessar valor de mercado
-    valor = player['data']['marketValueDetails']['current']['value']
-    print(f"Valor: €{valor}")
-```
+### Atacantes: Eficiência
+- **Álex Baena**: Melhor score/custo (€45M, score 276.35)
+- **Cole Palmer**: Alto potencial de valorização (22 anos, €110M)
+- **Pedri**: Aparece em MF e FW — jogador versátil
 
 ---
 
-## 💡 Dicas Profissionais
+## Próximas Evoluções Possíveis
 
-### 1. Usar Filtros Múltiplos
-Combine critérios para refinar resultados:
-```python
-df_top = df_filtered[
-    (df_filtered['Age'] < 25) &
-    (df_filtered['xG'] > 2.0) &
-    (df_filtered['Squad'].isin(['Barcelona', 'Real Madrid']))
-]
-```
-
-### 2. Normalizar para Comparação
-Compare jogadores de competições diferentes:
-```python
-metrics_normalized = (metrics - metrics.min()) / (metrics.max() - metrics.min())
-```
-
-### 3. Exportar para Apresentação
-```python
-# HTML
-df_top_df.to_html('zagueiros.html')
-
-# Excel
-df_top_df.to_excel('zagueiros.xlsx')
-
-# JSON
-df_top_df.to_json('zagueiros.json')
-```
-
----
-
-## 🚀 Próximas Evoluções Possíveis
-
-- [ ] Adicionar dados de lesões
-- [ ] Comparar com tendências históricas
-- [ ] Análise de evolução de valor
-- [ ] Integração com StatsBomb (dados mais detalhados)
+- [ ] Adicionar dados de lesões recentes
 - [ ] Dashboard interativo com Plotly
 - [ ] Previsão de cotações futuras com ML
+- [ ] Integração com StatsBomb (dados mais detalhados)
 - [ ] Análise de redes (passador → receptor)
+- [ ] Filtro por liga/país de origem
 
 ---
 
-## 📚 Referências Externas
-
-- **Transfermarkt**: https://www.transfermarkt.com
-- **Football Data**: https://fbref.com
-- **Wyscout**: Para vídeos de performance
-- **StatsBomb**: Dados avançados
-
----
-
-**Versão**: 1.0
-**Atualizado**: Novembro 2025
+**Versão**: 2.0 | **Atualizado**: Abril 2026

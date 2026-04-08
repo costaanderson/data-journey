@@ -1,1 +1,114 @@
-{}
+{
+  "Moisés Caicedo": {
+    "Nome": "Moisés Caicedo",
+    "Valor_Mercado": "€110.00mLast update: 09/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Chelsea",
+    "data_consulta": "2026-04-08T02:52:19.748637"
+  },
+  "Joško Gvardiol": {
+    "Nome": "Joško Gvardiol",
+    "Valor_Mercado": "€70.00mLast update: 09/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Man City",
+    "data_consulta": "2026-04-08T02:52:20.679388"
+  },
+  "Federico Valverde": {
+    "Nome": "Federico Valverde",
+    "Valor_Mercado": "€120.00mLast update: 12/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Real Madrid",
+    "data_consulta": "2026-04-08T02:52:21.411588"
+  },
+  "Antonee Robinson": {
+    "Nome": "Antonee Robinson",
+    "Valor_Mercado": "€25.00mLast update: 09/03/2026",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Fulham",
+    "data_consulta": "2026-04-08T02:52:22.168752"
+  },
+  "Aaron Wan-Bissaka": {
+    "Nome": "Aaron Wan-Bissaka",
+    "Valor_Mercado": "€22.00mLast update: 09/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "West Ham",
+    "data_consulta": "2026-04-08T02:52:22.827004"
+  },
+  "Pedri": {
+    "Nome": "Pedri",
+    "Valor_Mercado": "€150.00mLast update: 16/03/2026",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Barcelona",
+    "data_consulta": "2026-04-08T03:10:54.682447"
+  },
+  "Mattéo Guendouzi": {
+    "Nome": "Mattéo Guendouzi",
+    "Valor_Mercado": "€28.00mLast update: 23/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Fenerbahçe",
+    "data_consulta": "2026-04-08T03:10:55.483431"
+  },
+  "Manuel Locatelli": {
+    "Nome": "Manuel Locatelli",
+    "Valor_Mercado": "€25.00mLast update: 23/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Juventus",
+    "data_consulta": "2026-04-08T03:10:56.185053"
+  },
+  "Angelo Stiller": {
+    "Nome": "Angelo Stiller",
+    "Valor_Mercado": "€45.00mLast update: 19/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Stuttgart",
+    "data_consulta": "2026-04-08T03:10:57.073214"
+  },
+  "Bruno Guimarães": {
+    "Nome": "Bruno Guimarães",
+    "Valor_Mercado": "€75.00mLast update: 09/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Newcastle",
+    "data_consulta": "2026-04-08T03:10:57.730806"
+  },
+  "Alex Baena": {
+    "Nome": "Alex Baena",
+    "Valor_Mercado": "€45.00mLast update: 16/03/2026",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Atlético",
+    "data_consulta": "2026-04-08T03:11:15.443441"
+  },
+  "Cole Palmer": {
+    "Nome": "Cole Palmer",
+    "Valor_Mercado": "€110.00mLast update: 09/03/2026",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Chelsea",
+    "data_consulta": "2026-04-08T03:11:16.152206"
+  },
+  "Romano Schmid": {
+    "Nome": "Romano Schmid",
+    "Valor_Mercado": "€15.00mLast update: 20/03/2026",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Werder Bremen",
+    "data_consulta": "2026-04-08T03:11:17.176766"
+  },
+  "Mikkel Damsgaard": {
+    "Nome": "Mikkel Damsgaard",
+    "Valor_Mercado": "€30.00mLast update: 09/12/2025",
+    "Moeda": "EUR",
+    "Data_Contrato": "N/A",
+    "Clube_Atual": "Brentford",
+    "data_consulta": "2026-04-08T03:11:18.178066"
+  }
+}

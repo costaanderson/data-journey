@@ -1,251 +1,161 @@
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                                                                              ║
-║         🎯 ANÁLISE COMPLETA DE TALENTOS - COPEL FC - NOVEMBRO 2025          ║
+║         ANÁLISE COMPLETA DE TALENTOS - COPEL FC - ABRIL 2026                ║
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-📋 O QUE VOCÊ RECEBEU
+O QUE VOCÊ RECEBEU
 ═════════════════════════════════════════════════════════════════════════════
 
-✅ 1 NOTEBOOK PRONTO PARA USAR
-   • Analytics_copel_FC copy.ipynb
-   • 37 células bem organizadas
-   • Executa análise completa automaticamente
-   • Basta pressionar: Ctrl+Shift+Enter
+1 NOTEBOOK PRONTO PARA USAR
+   • Analytics_copel_FC_v2 .ipynb
+   • 40 células organizadas (26 de código + 14 markdown)
+   • Executa análise completa de DF, MF e FW
+   • Execute via: Kernel → Restart & Run All Cells
 
-✅ 7 GUIAS DE DOCUMENTAÇÃO
-   • 1.680 linhas de documentação
-   • Desde iniciante até avançado
-   • Exemplos práticos inclusos
-   • Troubleshooting completo
-
-✅ 15 JOGADORES SELECIONADOS
+15 JOGADORES SELECIONADOS
    • 5 Zagueiros (DF)
    • 5 Volantes (MF)
    • 5 Atacantes (FW)
-   • Com valores de mercado (€)
+   • Com valores de mercado em tempo real (Transfermarkt)
 
-✅ 3 GRÁFICOS DE COMPARAÇÃO
-   • Gráficos de Radar
+3 GRÁFICOS DE RADAR
+   • Um por posição (DF, MF, FW)
+   • Categorias dinâmicas por posição
    • Normalização 0-100%
-   • Fácil visualização
-   • Pronto para apresentação
 
 ═════════════════════════════════════════════════════════════════════════════
 
-🚀 COMO COMEÇAR (3 PASSOS)
+COMO EXECUTAR (2 PASSOS)
 ═════════════════════════════════════════════════════════════════════════════
 
-PASSO 1: Leia este arquivo (2 minutos) ← Você está aqui
-PASSO 2: Abra 00_START_HERE.md (2 minutos)
-PASSO 3: Execute o notebook (5-10 minutos)
-         → Abra: Analytics_copel_FC copy.ipynb
-         → Pressione: Ctrl+Shift+Enter
+PASSO 1: Abra o notebook
+         → Analytics_copel_FC_v2 .ipynb
 
-═════════════════════════════════════════════════════════════════════════════
-
-📚 DOCUMENTAÇÃO INCLUÍDA
-═════════════════════════════════════════════════════════════════════════════
-
-1. 00_START_HERE.md (173 linhas) ⭐ COMECE AQUI
-   → Resumo executivo visual
-   → Próximos passos
-   → Dúvidas frequentes
-
-2. QUICK_START.md (214 linhas) ⚡ RÁPIDO
-   → Como executar em 5 min
-   → Passo a passo cada célula
-   → Interpretação de resultados
-
-3. INDEX.md (311 linhas) 📖 MAPA
-   → Matriz de decisão
-   → Guia de leitura recomendado
-   → Conexões entre arquivos
-
-4. ESTRUTURA_NOTEBOOK.md (296 linhas) 🔧 TÉCNICO
-   → Visão geral de 37 células
-   → Fluxo de dados
-   → Configurações ajustáveis
-
-5. GUIA_ANALISE_TALENTOS.md (224 linhas) 📘 COMPLETO
-   → Pipeline explicado
-   → Critérios de filtro
-   → Fórmulas de scoring
-
-6. IMPLEMENTACAO_SUMMARY.md (264 linhas) �� DETALHADO
-   → O que foi feito
-   → Metodologia
-   → Insights principais
-
-7. REFERENCIA_METRICAS.md (198 linhas) 📋 REFERÊNCIA
-   → Explicação de cada métrica
-   → Top 5 gerados
-   → Comparações úteis
+PASSO 2: Execute tudo
+         → Kernel → Restart & Run All Cells
+         → Aguarde ~5-10 minutos (busca de mercado é a etapa mais lenta)
 
 ═════════════════════════════════════════════════════════════════════════════
 
-💡 EXEMPLO DE USO
+PIPELINE DE ANÁLISE
 ═════════════════════════════════════════════════════════════════════════════
 
-# Resultado: Top 5 Zagueiros
-┌──────────────────────────────────────────────────────────┐
-│ 1. Joško Gvardiol (Man City) - €75M - Score: 293.48    │
-│ 2. Moisés Caicedo (Chelsea) - €100M - Score: 264.68    │
-│ 3. Jan Paul van Hecke (Brighton) - €35M - Score: 250.68 │
-│ 4. Federico Valverde (Real Madrid) - €130M - Score: 249.96│
-│ 5. Óscar Mingueza (Celta Vigo) - €18M - Score: 215.20 │
-└──────────────────────────────────────────────────────────┘
+1. CARREGAMENTO
+   • players_data_light-2024_2025.csv (5 grandes ligas europeias 24/25)
+   • 165 colunas → 25 selecionadas
 
-# Resultado: Top 5 Volantes
-┌──────────────────────────────────────────────────────────┐
-│ 1. Pedri (Barcelona) - €140M - Score: 385.36           │
-│ 2. Mattéo Guendouzi (Lazio) - €32M - Score: 334.52     │
-│ 3. Manuel Locatelli (Juventus) - €30M - Score: 328.52  │
-│ 4. Angelo Stiller (Stuttgart) - €45M - Score: 310.16   │
-│ 5. Bruno Guimarães (Newcastle) - €80M - Score: 302.16  │
-└──────────────────────────────────────────────────────────┘
+2. FILTROS BASE (todas as posições)
+   • Idade: 20-26 anos
+   • Minutos jogados: >= 900
 
-# Resultado: Top 5 Atacantes
-┌──────────────────────────────────────────────────────────┐
-│ 1. Álex Baena (Villarreal) - €55M - Score: 301.13      │
-│ 2. Pedri (Barcelona) - €140M - Score: 291.56           │
-│ 3. Mikkel Damsgaard (Brentford) - €30M - Score: 284.04 │
-│ 4. Cole Palmer (Chelsea) - €120M - Score: 282.19       │
-│ 5. Bruno Guimarães (Newcastle) - €80M - Score: 280.89  │
-└──────────────────────────────────────────────────────────┘
+3. FILTROS POR POSIÇÃO
 
-═════════════════════════════════════════════════════════════════════════════
+   ZAGUEIROS e VOLANTES (DF/MF):
+   • PrgP > 20      (passes progressivos)
+   • Cmp% >= 75%    (precisão de passes)
+   • Tkl >= 20      (total de tackles)
+   • TklW >= 15     (tackles vencidos)
 
-⏱️ TEMPO DE EXECUÇÃO
-═════════════════════════════════════════════════════════════════════════════
+   ATACANTES (FW/MF):
+   • PrgP > 40      (passes progressivos)
+   • xG >= 1.5      (expected goals)
+   • KP >= 15       (passes chave)
+   • PPA >= 10      (passes para área de perigo)
+   • TklW >= 15     (tackles vencidos)
+   • Int >= 10      (interceptações)
 
-Instalação & Imports:  1 minuto
-Carregamento dados:    3 segundos
-Análise & Filtros:     5 segundos
-Gráficos:             3 segundos
-Busca Mercado:        3-5 minutos (⏳ API externa)
-Resumo:               1 segundo
-─────────────────────────────────
-TOTAL:                ≈ 5-10 minutos
+4. FÓRMULAS DE SCORE
 
-═════════════════════════════════════════════════════════════════════════════
+   Score_DF (Zagueiro):
+   TklW×2.0 + Int×1.5 + Cmp%×0.5 + PrgP×0.8
 
-🎓 O QUE VOCÊ APRENDERÁ
-═════════════════════════════════════════════════════════════════════════════
+   Score_MF (Volante):
+   PrgP×1.5 + Cmp%×0.8 + TklW×1.2 + Int×1.0
 
-✓ Como analisar dados de futebol com Python
-✓ Como usar Pandas para manipulação de dados
-✓ Como criar gráficos comparativos (matplotlib)
-✓ Como integrar APIs (Transfermarkt)
-✓ Como estruturar um projeto de análise
-✓ Como documentar código profissionalmente
+   Score_FW (Atacante):
+   xG×1.5 + KP×1.5 + PPA×1.3 + TklW×0.8 + Int×0.8
+
+5. BUSCA DE MERCADO
+   • Scraping do Transfermarkt via requests + BeautifulSoup
+   • Cache local em data/market_cache.json (validade: 30 dias)
 
 ═════════════════════════════════════════════════════════════════════════════
 
-✨ CARACTERÍSTICAS PRINCIPAIS
+RESULTADOS ATUAIS (última execução)
 ═════════════════════════════════════════════════════════════════════════════
 
-✓ Leitura automática do CSV
-✓ Tratamento inteligente de dados
-✓ Filtros customizáveis por posição
-✓ Scoring baseado em performance
-✓ Gráficos de radar comparativos
-✓ Integração com Transfermarkt (tempo real)
-✓ Tabelas consolidadas
-✓ Relatório executivo
-✓ Pronto para exportar (Excel, CSV, JSON)
+TOP 5 ZAGUEIROS (Score_DF)
+┌─────────────────────────────────────────────────────────┐
+│ 1. Moisés Caicedo   (Chelsea)          €110M  436.35   │
+│ 2. Joško Gvardiol   (Manchester City)   €70M  400.30   │
+│ 3. Federico Valverde (Real Madrid)     €120M  368.25   │
+│ 4. Antonee Robinson (Fulham)            €25M  358.20   │
+│ 5. Aaron Wan-Bissaka (West Ham)         €22M  356.75   │
+└─────────────────────────────────────────────────────────┘
 
-═════════════════════════════════════════════════════════════════════════════
+TOP 5 VOLANTES (Score_MF)
+┌─────────────────────────────────────────────────────────┐
+│ 1. Pedri            (Barcelona)        €150M  676.72   │
+│ 2. Mattéo Guendouzi (Lazio)            €28M   603.04   │
+│ 3. Manuel Locatelli (Juventus)         €25M   593.04   │
+│ 4. Angelo Stiller   (Stuttgart)        €45M   561.82   │
+│ 5. Bruno Guimarães  (Newcastle)        €75M   557.82   │
+└─────────────────────────────────────────────────────────┘
 
-🔧 REQUISITOS
-═════════════════════════════════════════════════════════════════════════════
-
-✓ Python 3.12+
-✓ Pandas
-✓ Matplotlib
-✓ NumPy
-✓ Transfermarkt-wrapper
-✓ Internet (para buscar valores de mercado)
-
-(O notebook instala automaticamente se necessário)
-
-═════════════════════════════════════════════════════════════════════════════
-
-🎯 PRÓXIMAS AÇÕES
-═════════════════════════════════════════════════════════════════════════════
-
-AGORA (5 minutos):
-  □ Leia este arquivo
-  □ Abra 00_START_HERE.md
-
-HOJE (30 minutos):
-  □ Leia QUICK_START.md
-  □ Execute o notebook
-  □ Revise os resultados
-
-ESTA SEMANA:
-  □ Customize os critérios
-  □ Valide os jogadores
-  □ Compartilhe com time
-
-PRÓXIMAS SEMANAS:
-  □ Integre com sistema
-  □ Crie rotina mensal
-  □ Expanda análises
+TOP 5 ATACANTES (Score_FW)
+┌─────────────────────────────────────────────────────────┐
+│ 1. Álex Baena       (Villarreal)       €45M   276.35   │
+│ 2. Cole Palmer      (Chelsea)         €110M   264.45   │
+│ 3. Pedri            (Barcelona)       €150M   259.00   │
+│ 4. Romano Schmid    (Werder Bremen)    €15M   254.25   │
+│ 5. Mikkel Damsgaard (Brentford)        €30M   250.40   │
+└─────────────────────────────────────────────────────────┘
 
 ═════════════════════════════════════════════════════════════════════════════
 
-❓ DÚVIDAS FREQUENTES
+TEMPO DE EXECUÇÃO
 ═════════════════════════════════════════════════════════════════════════════
 
-P: Por onde começo?
-R: Abra 00_START_HERE.md → siga os 3 passos
-
-P: Preciso ser programador?
-R: Não! Basta pressionar um botão. Tudo é automatizado.
-
-P: Como mudo os critérios?
-R: Veja ESTRUTURA_NOTEBOOK.md → seção "Configurações"
-
-P: Os valores são atualizados?
-R: Sim, capturados em tempo real do Transfermarkt
-
-P: Posso usar para outro time?
-R: Sim, funciona para qualquer seleção
-
-P: É grátis?
-R: Sim, código aberto
+Imports e configuração:   < 5 segundos
+Carregamento dos dados:   < 5 segundos
+Filtros e scores:         < 5 segundos
+Gráficos de radar:        < 5 segundos
+Busca de mercado:         3-5 minutos (API externa — usa cache após 1ª vez)
+Resumo executivo:         < 1 segundo
+─────────────────────────────────────
+TOTAL:                    ~5-10 minutos (< 1 min se cache válido)
 
 ═════════════════════════════════════════════════════════════════════════════
 
-📍 ESTRUTURA DE ARQUIVOS
+REQUISITOS
+═════════════════════════════════════════════════════════════════════════════
+
+• Python 3.12+
+• pandas
+• matplotlib
+• requests
+• beautifulsoup4
+• Conexão com internet (para buscar valores de mercado)
+
+(O notebook instala beautifulsoup4 automaticamente se necessário)
+
+═════════════════════════════════════════════════════════════════════════════
+
+ESTRUTURA DE ARQUIVOS
 ═════════════════════════════════════════════════════════════════════════════
 
 futebol_analytics/
-├── Analytics_copel_FC copy.ipynb        ← NOTEBOOK PRINCIPAL
-├── 00_START_HERE.md                     ← COMECE AQUI!
-├── QUICK_START.md
-├── INDEX.md
-├── ESTRUTURA_NOTEBOOK.md
-├── GUIA_ANALISE_TALENTOS.md
-├── IMPLEMENTACAO_SUMMARY.md
-├── REFERENCIA_METRICAS.md
-├── README_FINAL.txt                     ← Você está aqui
+├── Analytics_copel_FC_v2 .ipynb     ← NOTEBOOK PRINCIPAL
+├── README_FINAL.txt                 ← Você está aqui
 └── data/
-    └── players_data_light-2024_2025.csv
+    ├── players_data_light-2024_2025.csv
+    └── market_cache.json            ← Cache de valores de mercado
 
 ═════════════════════════════════════════════════════════════════════════════
 
-🎉 VOCÊ ESTÁ PRONTO!
-═════════════════════════════════════════════════════════════════════════════
-
-Próximo passo: Abra 00_START_HERE.md
-
-═════════════════════════════════════════════════════════════════════════════
-
-Versão: 1.0
-Status: ✅ Completo e Testado
-Data: Novembro 2025
-Suporte: Incluído nos guias
+Versão: 2.0
+Status: Completo e Testado
+Data: Abril 2026
 
 ╚══════════════════════════════════════════════════════════════════════════════╝

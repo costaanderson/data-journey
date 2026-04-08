@@ -1,95 +1,84 @@
-# 📊 Guia de Uso - Análise de Talentos COPEL FC
+# Guia de Uso - Análise de Talentos COPEL FC
 
-## 🎯 Objetivo
+## Objetivo
 Este notebook realiza uma análise completa de jogadores em 3 posições estratégicas (Zagueiros, Volantes e Atacantes), gerando rankings baseados em performance estatística e buscando informações de mercado via Transfermarkt.
 
 ---
 
-## 🔄 Fluxo de Trabalho Completo
+## Fluxo de Trabalho
 
-### 1️⃣ **Instalação e Importação**
-- Instala a biblioteca `transfermarkt-wrapper` (se necessária)
-- Importa todas as dependências (pandas, matplotlib, TMKT, etc.)
+### 1. Importação e Configuração
+- Importa pandas, matplotlib, requests, BeautifulSoup
+- Define parâmetros globais: `IDADE_MIN`, `IDADE_MAX`, `MINUTOS_MIN`, `TOP_N`, `CACHE_VALIDADE_DIAS`
 
-### 2️⃣ **Leitura e Tratamento de Dados**
+### 2. Leitura e Tratamento de Dados
 ```python
-# O notebook carrega automaticamente:
-df = pd.read_csv('data/players_data_light-2024_2025.csv')
+df = pd.read_csv('data/players_data_light-2024_2025.csv', index_col='Rk')
 ```
-- Seleciona 24 colunas relevantes para análise
-- Remove valores NaN em métricas de performance
-- Filtra jogadores entre 20-26 anos com +900 minutos de jogo
+- Seleciona 25 colunas relevantes para análise
+- Substitui NaN por 0 apenas para jogadores com Min > 0
+- Filtra jogadores entre 20-26 anos com >= 900 minutos, excluindo goleiros
 
-### 3️⃣ **Identificação de Posições**
-Posições disponíveis no dataset:
+### 3. Identificação de Posições
 - **DF** = Defensores/Zagueiros
 - **MF** = Meio-campistas/Volantes
 - **FW** = Atacantes
 - **Combinações**: DF,MF | MF,FW | FW,DF
 
-### 4️⃣ **Filtros por Posição**
+### 4. Filtros por Posição
 
-#### **🛡️ ZAGUEIROS (DF)**
-Critérios de seleção:
-- Passes Progressivos (PrgP) > 20
-- Precisão de Passes (Cmp%) ≥ 75%
-- Total de Interceptações (Tkl) ≥ 20
-- Interceptações Vencidas (TklW) ≥ 15
-
-Fórmula de Score:
-```
-Score = PrgP + (Cmp% - 75) × 0.4 + TklW × 0.6
-```
-
-#### **🎯 VOLANTES (MF)**
-Critérios de seleção:
-- Passes Progressivos (PrgP) > 20
-- Precisão de Passes (Cmp%) ≥ 75%
-- Total de Interceptações (Tkl) ≥ 20
-- Interceptações Vencidas (TklW) ≥ 15
+#### ZAGUEIROS (DF)
+Critérios mínimos de performance:
+- PrgP > 20 (passes progressivos)
+- Cmp% >= 75% (precisão de passes)
+- Tkl >= 20 (total de tackles)
+- TklW >= 15 (tackles vencidos)
 
 Fórmula de Score:
 ```
-Score = PrgP + (Cmp% - 75) × 0.4 + TklW × 0.6
+Score_DF = TklW × 2.0 + Int × 1.5 + Cmp% × 0.5 + PrgP × 0.8
 ```
 
-#### **⚽ ATACANTES (FW)**
-Critérios de seleção:
-- Passes Progressivos (PrgP) > 40
-- Expected Goals (xG) ≥ 1.5
-- Passes Chave (KP) ≥ 15
-- Passes para Ações de Perigo (PPA) ≥ 10
-- Interceptações Vencidas (TklW) ≥ 15
-- Interceptações (Int) ≥ 10
+#### VOLANTES (MF)
+Mesmos critérios mínimos de performance que DF.
 
 Fórmula de Score:
 ```
-Score = xG × 1.3 + PPA × 1.5 + KP × 1.5 + TklW × 1.0 + Int × 1.2
+Score_MF = PrgP × 1.5 + Cmp% × 0.8 + TklW × 1.2 + Int × 1.0
 ```
 
-### 5️⃣ **Gráficos de Radar**
-Visualiza os 5 melhores jogadores em cada posição com:
-- Normalização de 0 a 1 (100%)
-- Comparação lado a lado das competências
+#### ATACANTES (FW)
+Critérios mínimos de performance:
+- PrgP > 40 (passes progressivos)
+- xG >= 1.5 (expected goals)
+- KP >= 15 (passes chave)
+- PPA >= 10 (passes para ações de perigo)
+- TklW >= 15 (tackles vencidos)
+- Int >= 10 (interceptações)
 
-### 6️⃣ **Busca de Informações de Mercado**
-Para cada top 5, o notebook busca:
-- **Nome do jogador**
-- **ID do Transfermarkt**
-- **Valor de Mercado Atual**
-- **Moeda do Valor**
-- **Data de Término do Contrato**
-- **Clube Atual**
-- **Posição**
-- **Pé Preferido**
-- **Idade**
-- **Altura**
+Fórmula de Score:
+```
+Score_FW = xG × 1.5 + KP × 1.5 + PPA × 1.3 + TklW × 0.8 + Int × 0.8
+```
+
+### 5. Gráficos de Radar
+- Função `plot_radar_chart(data, title)` com categorias dinâmicas
+- Normalização de 0 a 1 (100%) para comparação justa
+- Um gráfico por posição com os Top N jogadores
+
+### 6. Busca de Informações de Mercado
+Para cada jogador do top N, o notebook busca via Transfermarkt:
+- Valor de Mercado (€)
+- Data de término do contrato
+- Clube atual
+
+Cache local em `data/market_cache.json` (validade: 30 dias).
 
 ---
 
-## 💾 Dados Usados
+## Dados Usados
 
-### Colunas Principais:
+### Colunas Principais
 | Coluna | Descrição |
 |--------|-----------|
 | Player | Nome do jogador |
@@ -99,126 +88,77 @@ Para cada top 5, o notebook busca:
 | Age | Idade |
 | Min | Minutos jogados |
 | Cmp% | % de passes completados |
-| PrgP | Passes Progressivos |
-| Tkl | Total de interceptações |
-| TklW | Interceptações vencidas |
+| PrgP | Passes progressivos |
+| Tkl | Total de tackles |
+| TklW | Tackles vencidos |
 | Int | Interceptações |
-| xG | Expected Goals (esperado) |
-| xAG | Expected Assisted Goals |
-| KP | Key Passes (passes chave) |
+| xG | Expected Goals |
+| KP | Passes chave |
 | PPA | Passes para ações de perigo |
 
 ---
 
-## 🚀 Como Usar
+## Como Usar
 
-### Execução Rápida (Recomendado)
-1. Abra o notebook `Analytics_copel_FC copy.ipynb`
-2. Pressione `Ctrl+Shift+Enter` ou use "Run All Cells"
-3. Aguarde a execução completa (~2-3 minutos)
+### Execução Completa (Recomendado)
+1. Abra `Analytics_copel_FC_v2 .ipynb`
+2. `Kernel → Restart & Run All Cells`
+3. Aguarde ~5-10 minutos
 
-### Execução Célula por Célula
-1. **Instalação**: Rode célula de instalação
-2. **Importações**: Rode imports
-3. **Dados**: Carregue o CSV
-4. **Tratamento**: Execute tratamento de dados
-5. **Análise**: Execute filtros
-6. **Resultados**: Visualize gráficos e tabelas
+### Customização
 
-### Customização Possível
-
-#### Alterar Critérios de Idade
+#### Alterar Critérios de Idade (Célula 6)
 ```python
-df_filtred = df_selected[
-    (df_selected['Age'].between(18, 30)) &  # Altere os valores
-    (df_selected['Min'] >= 900)
-]
+IDADE_MIN = 18  # era 20
+IDADE_MAX = 28  # era 26
 ```
 
-#### Alterar Thresholds de Performance
+#### Alterar Thresholds de Performance (Célula 17)
 ```python
 df_stats_df_mf = df_filtred_df_mf[
-    (df_filtred_df_mf['PrgP'] > 15) &  # Reduza o threshold
-    (df_filtred_df_mf['Cmp%'] >= 70) &
+    (df_filtred_df_mf["PrgP"] > 15) &   # Reduza para mais jogadores
+    (df_filtred_df_mf["Cmp%"] >= 70) &
+    (df_filtred_df_mf["Tkl"] >= 15) &
+    (df_filtred_df_mf["TklW"] >= 10)
 ]
 ```
 
-#### Alterar Número de Top Jogadores
+#### Alterar Número de Jogadores (Célula 6)
 ```python
-df_top_df = df_stats_df_mf.nlargest(10, 'Score')  # Pegue top 10 em vez de 5
+TOP_N = 10  # era 5
 ```
 
 ---
 
-## 📈 Saídas Esperadas
+## Saídas Esperadas
 
-### 1. Tabelas
-- DataFrame com top 5 jogadores por posição
-- Colunas: Player, Squad, Age, Score, Valor_Mercado, Data_Contrato
+### Tabelas
+- `df_top_df`: Top N zagueiros com colunas Player, Nation, Pos, Squad, Comp, Age, Min, Cmp, Cmp%, PrgP, Tkl, TklW, Int, PrgC, Score_DF
+- `df_top_mf`: Top N volantes com colunas Player, Nation, Pos, Squad, Comp, Age, Min, Cmp, Cmp%, PrgP, Tkl, TklW, Int, PrgC, 1/3, Score_MF
+- `df_top_fw`: Top N atacantes
 
-### 2. Gráficos Radar
-- Visualização comparativa de 5 jogadores
-- Métricas normalizadas de 0-100%
+### Gráficos
+- 3 gráficos de radar (DF, MF, FW)
 
-### 3. Informações de Mercado
-- Valor de mercado atual (em € EUR)
-- Contratos ativos
-- Clubes atuais
-
-### 4. Resumo Executivo
-- Tabela consolidada com estatísticas + valores de mercado
-- Separada por posição (DF, MF, FW)
+### Resumo Executivo
+- Tabela consolidada com estatísticas + Valor_Mercado + Data_Contrato
 
 ---
 
-## ⚠️ Notas Importantes
+## Troubleshooting
 
-1. **Dados do CSV**: Atualizado para 2024-2025
-2. **Transfermarkt**: Requer internet para buscar informações de mercado
-3. **Tempo de Busca**: A busca de mercado pode levar 30-60 segundos
-4. **Precisão**: Baseada em nomes de jogadores - pode haver variações
+### Erro: KeyError nas colunas do radar
+Certifique-se de executar as células em ordem. A função `plot_radar_chart` deve ser definida antes das chamadas de MF e FW.
 
----
+### Erro: Jogador não encontrado no Transfermarkt
+Normal. O pipeline continua com `N/A` nos campos de mercado.
 
-## 🔍 Troubleshooting
+### Erro: Timeout na conexão
+Verifique a conexão com internet. O cache evita re-buscas desnecessárias.
 
-### Erro: "Jogador não encontrado"
-- Verifique a grafia exata do nome no arquivo CSV
-- Alguns jogadores podem não estar no Transfermarkt
-
-### Erro: "Timeout na conexão"
-- Verifique a conexão com internet
-- Tente novamente em alguns minutos
-
-### Dados NaN nas Colunas
-- Normal para jogadores com baixa participação
-- O tratamento substitui por 0 para fair comparison
+### Dados NaN nas colunas
+Normal para jogadores com baixa participação. O tratamento substitui por 0 para jogadores com Min > 0.
 
 ---
 
-## 📊 Exemplo de Resultados
-
-```
-INFORMAÇÕES DE MERCADO - TOP 5 ZAGUEIROS
-
-Nome: Joško Gvardiol
-Clube: Manchester City
-Valor de Mercado: €75,000,000
-Contrato até: 2028-06-30
-Score: 293.48
-
-Nome: Moisés Caicedo
-Clube: Chelsea
-Valor de Mercado: €80,000,000
-Contrato até: 2032-09-15
-Score: 264.68
-```
-
----
-
-## 📧 Contato & Feedback
-Para sugestões de melhoria ou correções, abra uma issue no repositório.
-
----
-
-**Última Atualização**: Novembro 2025
+**Última Atualização**: Abril 2026
